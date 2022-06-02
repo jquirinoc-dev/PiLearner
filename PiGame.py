@@ -9,19 +9,37 @@ pi = '3.141592653589793238462643383279502884197169399375105820974944592307816406
 def wait():
     m.getch()
 
-def rememberHighScore():
-    myFile = open("highscore.txt", "r")
-    high = int(myFile.read())
-    """ print(f'{high} is type {type(high)}') """
-    myFile.close()
-    return high;
+def rememberHighScore(array, nickname):
+    
+    tfile = open("highscores.txt", "r")
+    lines = tfile.readlines()
 
-def writeHighScore(high):
-    myFile = open("highscore.txt", "w")
-    myFile.write(str(high))
+    """ for line in lines:
+        array.append(line.strip().split()) """
+    
+    for i in range(len(lines)):
+        array.append(lines[i].strip().split())
+        array[i][1] = int(array[i][1])
+
+    for i in range(len(array)):
+        """ print(array[i][0]) """
+        if nickname == array[i][0]:
+            return array[i][1]
+    
+    tmpList = [nickname, 0]
+    array.append(tmpList)
+
+    """ print(array) """
+    
+    return 0;
+
+def writeHighScore(array):
+    myFile = open("highscores.txt", "w")
+    for line in array:
+        myFile.write(line[0] + " " + str(line[1]) + "\n")
     myFile.close()
 
-def checkInput(pi, high):
+def checkInput(nickname, array, pi, high):
     score = 0
 
     for i in range(3, len(pi), 2):
@@ -38,20 +56,36 @@ def checkInput(pi, high):
 
         if inpt != pi[:i + 1]:
             print(f'INCORRECT! You could just try from the beggining\nThe score you got was {score}')
-            return high
+            
+            for i in range(len(array)):
+                if array[i][0] == nickname:
+                    array[i][1] = high
+
+            return
 
         score += 1
 
         if score > high: 
             high = score
 
-        
-
         os.system('cls')
+
+    for i in range(len(array)):
+        if array[i][0] == nickname:
+            array[i][1] = high
+
+    
+
+    tmpList = [nickname, high]
+    array.append(tmpList)
+
+    print(array)
+
+    writeHighScore(array)
     
     print(f'Congrats! You completed the challenge and your score was {score}')
 
-    return high;
+    return
 
 
 print("I will show you the number Pi by portions and you'll have to remember that portion and type it....\nGood Luck!\nPress any key to continue: ", end="")
@@ -59,8 +93,12 @@ print("I will show you the number Pi by portions and you'll have to remember tha
 wait()
 os.system('cls')
 
-high = rememberHighScore()
-high = checkInput(pi, high)
-writeHighScore(high)
+nick = input("Enter a nickname: ")
+
+scoresArray = []
+
+high = rememberHighScore(scoresArray, nick)
+checkInput(nick, scoresArray, pi, high)
+writeHighScore(scoresArray)
 
 """ print(high) """
