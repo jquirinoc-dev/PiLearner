@@ -1,7 +1,6 @@
 from time import sleep
 import os
 import msvcrt as m
-from wsgiref.validate import WriteWrapper
 
 
 pi = '3.14159265358979323846264338327950288419716939937510582097494459230781640628620899'
@@ -13,7 +12,7 @@ def wait():
 def rememberHighScore():
     myFile = open("highscore.txt", "r")
     high = int(myFile.read())
-    print(f'{high} is type {type(high)}')
+    """ print(f'{high} is type {type(high)}') """
     myFile.close()
     return high;
 
@@ -35,11 +34,11 @@ def checkInput(pi, high):
         print(f'Current score: {score}')
         print(f'Highscore: {high}')
     
-        inpt = input("Enter the Pi portion I just showed you: ")
+        inpt = input("\nEnter the Pi portion I just showed you: ")
 
         if inpt != pi[:i + 1]:
             print(f'INCORRECT! You could just try from the beggining\nThe score you got was {score}')
-            break
+            return high
 
         score += 1
 
@@ -64,4 +63,4 @@ high = rememberHighScore()
 high = checkInput(pi, high)
 writeHighScore(high)
 
-print(high)
+""" print(high) """
