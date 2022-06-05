@@ -6,3 +6,4 @@ camilo 26
 mauricio 3
 renet 1
 saachi 2
+JoJoto 4
