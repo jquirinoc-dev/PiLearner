@@ -1,3 +1,5 @@
 -Implement a multiple username highscore sytem... DONE
 
 -Animations (maybe)
+
+-Code documentation
