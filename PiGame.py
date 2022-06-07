@@ -88,17 +88,31 @@ def checkInput(nickname, array, pi, high):
     return
 
 
-print("I will show you the number Pi by portions and you'll have to remember that portion and type it....\nGood Luck!\nPress any key to continue: ", end="")
+def main():
 
-wait()
-os.system('cls')
+    os.system('cls')
 
-nick = input("Enter a nickname: ")
+    print("I will show you the number Pi by portions and you'll have to remember that portion and type it....\nGood Luck!\nPress any key to continue: ", end="")
 
-scoresArray = []
+    wait()
+    os.system('cls')
 
-high = rememberHighScore(scoresArray, nick)
-checkInput(nick, scoresArray, pi, high)
-writeHighScore(scoresArray)
+    nick = input("Enter a nickname: ")
 
-""" print(high) """
+    scoresArray = []
+
+    high = rememberHighScore(scoresArray, nick)
+    checkInput(nick, scoresArray, pi, high)
+    writeHighScore(scoresArray)
+
+    """ print(high) """
+
+
+
+choice = 'y'
+
+while choice == 'y':
+    main()
+    choice = input("Would you like to try again? (y/n): ")
+
+
