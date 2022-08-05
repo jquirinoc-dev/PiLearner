@@ -8,7 +8,5 @@ renet 1
 saachi 2
 JoJoto 4
 jojotisimo 1
-gay 0
-gaysito 0
 ajsdajda 0
 alex 1
